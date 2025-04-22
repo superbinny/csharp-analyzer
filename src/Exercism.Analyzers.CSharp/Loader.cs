@@ -59,7 +59,7 @@ internal static class Loader
         private static JsonObject ParseConfigFiles(Options options)
         {
             var configJsonFilePath = Path.Combine(options.InputDirectory, ".meta", "config.json");
-            using var configJsonFile = new FileStream(configJsonFilePath, FileMode.Open);
+                using var configJsonFile = new FileStream(configJsonFilePath, FileMode.Open);
             var configJson = JsonNode.Parse(configJsonFile);
             return configJson!["files"]!.AsObject();
         }

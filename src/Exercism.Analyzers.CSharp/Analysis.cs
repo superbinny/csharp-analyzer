@@ -95,6 +95,20 @@ internal abstract class Analyzer : CSharpSyntaxWalker
                 case "weighing-machine":
                     yield return new WeighingMachineAnalyzer(submission);
                     break;
+                case "all":
+                    yield return new CollatzConjectureAnalyzer(submission);
+                    yield return new DifferenceOfSquaresAnalyzer(submission);
+                    yield return new GigasecondAnalyzer(submission);
+                    yield return new GrainsAnalyzer(submission);
+                    yield return new IsogramAnalyzer(submission);
+                    yield return new PangramAnalyzer(submission);
+                    yield return new ProteinTranslationAnalyzer(submission);
+                    yield return new LeapAnalyzer(submission);
+                    yield return new RaindropsAnalyzer(submission);
+                    yield return new ReverseStringAnalyzer(submission);
+                    yield return new TwoFerAnalyzer(submission);
+                    yield return new WeighingMachineAnalyzer(submission);
+                    break;
             }
 
             yield return new CommonAnalyzer(submission);
