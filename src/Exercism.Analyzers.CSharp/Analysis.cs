@@ -21,9 +21,9 @@ internal abstract class Analyzer : CSharpSyntaxWalker
     protected Analyzer(Submission submission, SyntaxWalkerDepth syntaxWalkerDepth = SyntaxWalkerDepth.Token) : base(syntaxWalkerDepth) => 
         _submission = submission;
 
-    public static Analysis Analyze(Submission submission)
+    public static Analysis Analyze(Submission submission, bool ignoreError=false)
     {
-        if (submission.HasCompilationErrors)
+        if (!ignoreError && submission.HasCompilationErrors)
             return Analysis.Empty; // We can't really analyze the solution when there are compilation errors
 
         var analysis = Analysis.Empty;
@@ -94,6 +94,9 @@ internal abstract class Analyzer : CSharpSyntaxWalker
                     break;
                 case "weighing-machine":
                     yield return new WeighingMachineAnalyzer(submission);
+                    break;
+                case "show-all":
+                    yield return new ShowAllAnalyzer(submission);
                     break;
                 case "all":
                     yield return new CollatzConjectureAnalyzer(submission);

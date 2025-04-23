@@ -19,7 +19,8 @@ public static class Program
         Console.WriteLine($"Analyzing {options.Slug} solution in directory {options.InputDirectory}");
 
         var solution = await Loader.Load(options);
-        var analysis = Analyzer.Analyze(solution);
+        bool ignoreError = options.Slug == "all" || options.Slug == "show-all";
+        var analysis = Analyzer.Analyze(solution, ignoreError: ignoreError);
         Output.WriteToFile(options, analysis);
 
         Console.WriteLine($"Analyzed {options.Slug} solution in directory {options.InputDirectory}");
